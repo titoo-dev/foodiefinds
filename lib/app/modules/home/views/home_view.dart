@@ -68,6 +68,24 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
+
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return ListTileTheme(
+                    child: ListTile(
+                      title: Text('Restaurant $index'),
+                      subtitle: Text('Description $index'),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.favorite_outline),
+                        onPressed: () {},
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
