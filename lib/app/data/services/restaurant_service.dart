@@ -1,3 +1,34 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-class RestaurantService extends GetxService {}
+import '../../common/mixins/api_request.dart';
+import '../restaurant_for_listing_model.dart';
+
+class RestaurantService extends GetxService with ApiRequest {
+  final Dio client;
+
+  final GetStorage storage;
+
+  RestaurantService({required this.client, required this.storage});
+
+  Future<List<RestaurantForListing>> getRestaurantsForListing() async {
+    try {
+      return await getRequest<List<RestaurantForListing>>(
+        GetRequestParams(
+          path: '/items/restaurants',
+          onSuccess: (data) => (data['data'] as List)
+              .map((account) => RestaurantForListing.fromJson(account))
+              .toList(),
+          queryParameters: const {
+            'fields': 'id,name,description,address,rating,image,cuisine_type',
+            'limit': 10,
+          },
+          client: client,
+        ),
+      );
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+}
