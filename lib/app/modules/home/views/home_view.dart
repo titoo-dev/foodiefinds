@@ -90,7 +90,7 @@ class _RestaurantList extends GetView<HomeController> {
                         'unknown'),
                 trailing: IconButton(
                   icon: const Icon(Icons.arrow_forward_rounded),
-                  onPressed: () {},
+                  onPressed: () => controller.onRestaurantSelected(index),
                 ),
               ),
             );
