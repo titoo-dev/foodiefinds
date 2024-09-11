@@ -18,32 +18,7 @@ class HomeView extends GetView<HomeController> {
           ),
         ],
       ),
-      bottomNavigationBar: GetX<HomeController>(builder: (state) {
-        return BottomNavigationBar(
-          currentIndex: state.currentNavigationIndex.value,
-          onTap: controller.navigate,
-          selectedItemColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: 'Cart',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              label: 'Favorites',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings_outlined),
-              label: 'Settings',
-            ),
-          ],
-        );
-      }),
+      bottomNavigationBar: const _NavBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
@@ -69,26 +44,69 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ListTileTheme(
-                    child: ListTile(
-                      title: Text('Restaurant $index'),
-                      subtitle: Text('Description $index'),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.favorite_outline),
-                        onPressed: () {},
-                      ),
-                    ),
-                  );
-                },
-              ),
+            const Expanded(
+              child: _RestaurantList(),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+class _RestaurantList extends GetView<HomeController> {
+  const _RestaurantList();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return ListTileTheme(
+          child: ListTile(
+            title: Text('Restaurant $index'),
+            subtitle: Text('Description $index'),
+            trailing: IconButton(
+              icon: const Icon(Icons.favorite_outline),
+              onPressed: () {},
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _NavBar extends GetView<HomeController> {
+  const _NavBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return GetX<HomeController>(builder: (state) {
+      return BottomNavigationBar(
+        currentIndex: state.currentNavigationIndex.value,
+        onTap: controller.navigate,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
+          ),
+        ],
+      );
+    });
   }
 }

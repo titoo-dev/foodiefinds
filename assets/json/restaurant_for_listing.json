@@ -1,0 +1,11 @@
+{
+    "id": 2,
+    "name": "The Gourmet Spot",
+    "description": "A modern fusion restaurant offering the best gourmet dishes.",
+    "address": "1234 Culinary St, Food Town",
+    "rating": 0,
+    "image": "4bbb80aa-f084-4881-a19b-e0c96d029d62",
+    "cuisine_type": [
+        "fusion"
+    ]
+}
