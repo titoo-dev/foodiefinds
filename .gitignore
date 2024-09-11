@@ -30,6 +30,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/config/
+
 
 # Symbolication related
 app.*.symbols
@@ -44,5 +46,3 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
-
-/config/
