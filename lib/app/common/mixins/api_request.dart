@@ -9,6 +9,7 @@ mixin ApiRequest {
     if (params.showLoading) {
       Dialogs.showLoadingDialog();
     }
+
     final response = await params.client.get(
       params.path,
       options: Options(
@@ -23,7 +24,7 @@ mixin ApiRequest {
       queryParameters: params.queryParameters,
       onReceiveProgress: params.onReceiveProgress,
     );
-    final contentType = response.headers.value('Content-Type');
+
     if (params.showLoading) {
       Get.back();
     }
@@ -32,11 +33,7 @@ mixin ApiRequest {
       throw Exception(response.data.toString());
     }
 
-    return params.onSuccess(
-      contentType == 'application/json'
-          ? response.data
-          : [response.data, contentType],
-    );
+    return params.onSuccess(response.data);
   }
 
   Future<T> postRequest<T>(PostRequestParams params) async {

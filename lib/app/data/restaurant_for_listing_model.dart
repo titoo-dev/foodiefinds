@@ -3,7 +3,7 @@ class RestaurantForListing {
   String? name;
   String? description;
   String? address;
-  int? rating;
+  double? rating;
   String? image;
   List<String>? cuisineType;
 
@@ -21,7 +21,7 @@ class RestaurantForListing {
     name = json['name'];
     description = json['description'];
     address = json['address'];
-    rating = json['rating'];
+    rating = json['rating'].toDouble();
     image = json['image'];
     cuisineType = json['cuisine_type']?.cast<String>();
   }

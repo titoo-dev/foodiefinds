@@ -18,7 +18,7 @@ class RestaurantService extends GetxService with ApiRequest {
         GetRequestParams(
           path: '/items/restaurants',
           onSuccess: (data) => (data['data'] as List)
-              .map((account) => RestaurantForListing.fromJson(account))
+              .map((restaurant) => RestaurantForListing.fromJson(restaurant))
               .toList(),
           queryParameters: const {
             'fields': 'id,name,description,address,rating,image,cuisine_type',
