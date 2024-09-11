@@ -6,7 +6,11 @@ class ProductBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProductController>(
-      () => ProductController(),
+      () => ProductController(
+        logger: Get.find(),
+        restaurantService: Get.find(),
+        storage: Get.find(),
+      ),
     );
   }
 }
