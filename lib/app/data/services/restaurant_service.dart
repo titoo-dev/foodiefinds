@@ -38,7 +38,7 @@ class RestaurantService extends GetxService with ApiRequest {
       return await getRequest<Restaurant>(
         GetRequestParams(
           path: '/items/restaurants/$restaurantId',
-          onSuccess: (restaurant) => RestaurantForListing.fromJson(restaurant),
+          onSuccess: (data) => Restaurant.fromJson(data['data']),
           client: client,
         ),
       );
