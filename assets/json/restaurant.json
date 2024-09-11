@@ -1,0 +1,18 @@
+{
+    "id": 2,
+    "date_created": "2024-09-09T16:37:09.155Z",
+    "date_updated": "2024-09-10T18:34:17.812Z",
+    "name": "The Gourmet Spot",
+    "description": "A modern fusion restaurant offering the best gourmet dishes.",
+    "address": "1234 Culinary St, Food Town",
+    "phone": "+1 555-1234",
+    "email": "info@gourmetspot.com",
+    "image": "4bbb80aa-f084-4881-a19b-e0c96d029d62",
+    "rating": 0,
+    "latitude": "40.712776",
+    "longitude": "-74.005974",
+    "open_hours": 1,
+    "cuisine_type": [
+        "fusion"
+    ]
+}
