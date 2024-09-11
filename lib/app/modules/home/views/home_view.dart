@@ -59,18 +59,42 @@ class _RestaurantList extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return ListTileTheme(
-          child: ListTile(
-            title: Text('Restaurant $index'),
-            subtitle: Text('Description $index'),
-            trailing: IconButton(
-              icon: const Icon(Icons.favorite_outline),
-              onPressed: () {},
-            ),
+    return FutureBuilder(
+      future: controller.getRestaurants(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
+        } else if (controller.restaurants.isEmpty) {
+          return const Center(
+            child: Text('Empty'),
+          );
+        }
+
+        return ListView.separated(
+          itemCount: controller.restaurants.length,
+          separatorBuilder: (context, index) => const Divider(
+            height: 1,
           ),
+          itemBuilder: (context, index) {
+            return ListTileTheme(
+              child: ListTile(
+                title: Text(controller.restaurants[index].name ?? 'unknown'),
+                subtitle: Text(
+                    controller.restaurants[index].cuisineType?.join(', ') ??
+                        'unknown'),
+                trailing: IconButton(
+                  icon: const Icon(Icons.arrow_forward_rounded),
+                  onPressed: () {},
+                ),
+              ),
+            );
+          },
         );
       },
     );
