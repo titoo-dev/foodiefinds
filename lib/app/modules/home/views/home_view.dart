@@ -11,12 +11,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('FoodieFinds'),
-        actions: [
-          IconButton(
-            icon: const CircleAvatar(child: Icon(Icons.person_outline)),
-            onPressed: () {},
-          ),
-        ],
+        actions: const [UserAvatar()],
       ),
       bottomNavigationBar: const _NavBar(),
       body: Padding(
@@ -97,6 +92,18 @@ class _RestaurantList extends GetView<HomeController> {
           },
         );
       },
+    );
+  }
+}
+
+class UserAvatar extends StatelessWidget {
+  const UserAvatar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: const CircleAvatar(child: Icon(Icons.person_outline)),
+      onPressed: () {},
     );
   }
 }
