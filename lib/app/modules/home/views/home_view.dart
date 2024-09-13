@@ -96,14 +96,14 @@ class _RestaurantList extends GetView<HomeController> {
   }
 }
 
-class UserAvatar extends StatelessWidget {
+class UserAvatar extends GetView<HomeController> {
   const UserAvatar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: const CircleAvatar(child: Icon(Icons.person_outline)),
-      onPressed: () {},
+      onPressed: controller.goToProfile,
     );
   }
 }

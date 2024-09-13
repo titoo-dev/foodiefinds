@@ -41,4 +41,8 @@ class HomeController extends GetxController {
       return false;
     }
   }
+
+  void goToProfile() {
+    Get.toNamed(Routes.PROFILE);
+  }
 }
